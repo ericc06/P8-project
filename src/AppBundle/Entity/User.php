@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Table("user")
@@ -38,6 +40,24 @@ class User implements UserInterface
      * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
      */
     private $email;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Task",
+     *     mappedBy="user",
+     *     cascade={"persist", "remove"}
+     * )
+     * @Assert\Valid()
+     */
+    private $tasks;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -77,6 +97,53 @@ class User implements UserInterface
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * Add task
+     *
+     * @param Task $task
+     *
+     * @return User
+     */
+    public function addTask(Task $task): self
+    {
+        $this->tasks[] = $task;
+        $task->setUser($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @param Task $task
+     */
+    public function removeTask(Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+    /**
+     * Get task
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks(): ?Collection
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Set task
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function setTasks(?Collection $tasks): self
+    {
+        $this->tasks = $tasks;
+
+        return $this;
     }
 
     public function getRoles()
