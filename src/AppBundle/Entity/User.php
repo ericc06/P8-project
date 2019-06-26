@@ -129,7 +129,7 @@ class User implements UserInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTasks(): ?Collection
+    public function getTasks(): Collection
     {
         return $this->tasks;
     }
@@ -139,7 +139,7 @@ class User implements UserInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function setTasks(?Collection $tasks): self
+    public function setTasks(Collection $tasks): self
     {
         $this->tasks = $tasks;
 
