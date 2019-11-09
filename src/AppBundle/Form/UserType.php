@@ -33,25 +33,27 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
         ;
 
-        // On ajoute une fonction qui va écouter un évènement
-        // 1er argument : L'évènement qui nous intéresse : ici, PRE_SET_DATA
-        // 2e argument : La fonction à exécuter lorsque l'évènement est déclenché
+        // To add a correctly initialized "roles" select field, we add a function
+        // that will listen to an event.
+        // 1st argument: The event we want to listne to. Here, PRE_SET_DATA
+        // 2nd argument: The funtion to be run whenthe event is triggered.
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            // On récupère notre objet User sous-jacent
+            // We get our User entity
             $user = $event->getData();
 
-//            \var_dump($user);
-
+            // If the user or his name is null, no existing value is selected in the select field.
             if ((null === $user) || (null === $user->getUsername())) {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class);
-            } elseif (!\in_array('ROLE_ADMIN', $user->getRoles())) {
-                $event->getForm()->add('roles', UserRolesListChoiceType::class, [
-                    'data' => ['ROLE_USER']
-                ]);
-            } else {
+            // If the user has the 'ROLE_ADMIN' role, this value is selected in the select field.
+            } elseif (\in_array('ROLE_ADMIN', $user->getRoles())) {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class, [
                     'data' => ['ROLE_ADMIN']
                 ]);
+            // Else, the user has the 'ROLE_USER' role and we select this value on form load.
+            } else {
+                $event->getForm()->add('roles', UserRolesListChoiceType::class, [
+                    'data' => ['ROLE_USER']
+                ]);          
             }
         });
     }
