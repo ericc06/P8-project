@@ -111,8 +111,7 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-        //return array_unique($roles);
-        return $roles;
+        return array_unique($roles);
     }
  
     public function setRoles(array $roles)
@@ -120,14 +119,11 @@ class User implements UserInterface
         if (!in_array('ROLE_USER', $roles)) {
             $roles[] = 'ROLE_USER';
         }
-        
-        /*
         foreach ($roles as $role) {
-            if(substr($role, 0, 5) !== 'ROLE_') {
+            if (substr($role, 0, 5) !== 'ROLE_') {
                 throw new InvalidArgumentException("Chaque rôle doit commencer par 'ROLE_'");
             }
         }
-        */
         $this->roles = $roles;
 
         return $this;

@@ -30,13 +30,15 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        // Without this line, the roles array is empty after creation if "ROLE_USER" is selected. !!! TODO
-        $user->setRoles(array("ROLE_USER"));
+        // Without this line, the roles array is empty after creation if "ROLE_USER" is selected. !!! TODO ERIC
+        //$user->setRoles(array("ROLE_USER"));
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
+
+            $user->setRoles($form->get('roles')->getData());
 
             $em->persist($user);
             $em->flush();

@@ -55,7 +55,9 @@ class UserRolesListChoiceType extends AbstractType
             'placeholder' => 'Choisissez un role',
             'expanded' => false,
             'required' => true,
-            'multiple' => false
+            'multiple' => false,
+            // By default (new user), we select the select placeholder option (with a null value).
+            'data' => null
         ));
     }
 
