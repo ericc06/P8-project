@@ -42,6 +42,11 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles = [];
+
+    /**
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\Task",
      *     mappedBy="user",
@@ -99,6 +104,35 @@ class User implements UserInterface
         $this->email = $email;
     }
 
+    public function getRoles(): array
+    {
+        // See https://symfony.com/doc/3.4/security.html
+        // and https://symfonycasts.com/screencast/symfony-security/dynamic-roles
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        //return array_unique($roles);
+        return $roles;
+    }
+ 
+    public function setRoles(array $roles)
+    {
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        
+        /*
+        foreach ($roles as $role) {
+            if(substr($role, 0, 5) !== 'ROLE_') {
+                throw new InvalidArgumentException("Chaque rôle doit commencer par 'ROLE_'");
+            }
+        }
+        */
+        $this->roles = $roles;
+
+        return $this;
+    }
+
     /**
      * Add task
      *
@@ -144,11 +178,6 @@ class User implements UserInterface
         $this->tasks = $tasks;
 
         return $this;
-    }
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
     }
 
     public function eraseCredentials()
