@@ -15,7 +15,10 @@ class UserController extends Controller
      */
     public function listAction()
     {
-        return $this->render('user/list.html.twig', ['users' => $this->getDoctrine()->getRepository('AppBundle:User')->findAll()]);
+        return $this->render(
+            'user/list.html.twig',
+            ['users' => $this->getDoctrine()->getRepository('AppBundle:User')->findAll()]
+        );
     }
 
     /**
@@ -27,6 +30,8 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
+        // Without this line, the roles array is empty after creation if "ROLE_USER" is selected. !!! TODO
+        $user->setRoles(array("ROLE_USER"));
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
