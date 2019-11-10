@@ -42,17 +42,17 @@ class UserRolesListChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'label' => "Rôle(s)",
+            'label' => 'role',
             'choices'  => [
-                'Simple utilisateur' => 'ROLE_USER',
-                'Administrateur' => 'ROLE_ADMIN',
+                'user' => 'ROLE_USER',
+                'administrator' => 'ROLE_ADMIN',
             ],
             // To keep the select field options values set as wanted and not replaced with numbers.
             // See https://stackoverflow.com/a/39411469/10980984
             'choice_value' => function ($choice) {
                 return $choice;
             },
-            'placeholder' => 'Choisissez un role',
+            'placeholder' => 'choose_a_role',
             'expanded' => false,
             'required' => true,
             'multiple' => false,

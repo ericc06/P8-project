@@ -38,15 +38,15 @@
         <!-- Page Content -->
         <div class="container">
             <div class="row">
-                <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
-                <a href="{{ path('user_list') }}" class="btn btn-primary">Lister les utilisateurs</a>
+                <a href="{{ path('user_create') }}" class="btn btn-primary">{{ 'create_a_user'|trans }}</a>
+                <a href="{{ path('user_list') }}" class="btn btn-primary">{{ 'list_users'|trans }}</a>
 
                 {% if app.user %}
-                <a href="{{ path('logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
+                <a href="{{ path('logout') }}" class="pull-right btn btn-danger">{{ 'log_out'|trans }}</a>
                 {% endif %}
 
                 {% if not app.user and 'login' != app.request.attributes.get('_route') %}
-                <a href="{{ path('login') }}" class="btn btn-success">Se connecter</a>
+                <a href="{{ path('login') }}" class="btn btn-success">{{ 'log_in'|trans }}</a>
                 {% endif %}
             </div>
 
@@ -54,13 +54,13 @@
                 <div class="col-md-12">
                     {% for flash_message in app.session.flashBag.get('success') %}
                         <div class="alert alert-success" role="alert">
-                            <strong>Superbe !</strong> {{ flash_message }}
+                            <strong>{{ 'great'|trans }}</strong> {{ flash_message }}
                         </div>
                     {% endfor %}
 
                     {% for flash_message in app.session.flashBag.get('error') %}
                         <div class="alert alert-danger" role="alert">
-                            <strong>Oops !</strong> {{ flash_message }}
+                            <strong>{{ 'oops'|trans }}</strong> {{ flash_message }}
                         </div>
                     {% endfor %}
 
