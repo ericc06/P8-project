@@ -21,7 +21,12 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale:  "%locale%"
+    #default_locale:  "%locale%"
+    default_locale: fr_FR
+    translator:
+        fallbacks:
+            - en_EN
+            #- '%locale%'
     trusted_hosts:   ~
     trusted_proxies: ~
     session:

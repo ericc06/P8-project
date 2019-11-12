@@ -22,20 +22,20 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, ['label' => "Nom d'utilisateur"])
+            ->add('username', TextType::class, ['label' => 'login_username'])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe doivent correspondre.',
+                'invalid_message' => 'both_passwords_must_match',
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Tapez le mot de passe à nouveau'],
+                'first_options'  => ['label' => 'login_password'],
+                'second_options' => ['label' => 'type_password_again'],
             ])
-            ->add('email', EmailType::class, ['label' => 'Adresse email'])
+            ->add('email', EmailType::class, ['label' => 'email_address'])
         ;
 
         // To add a correctly initialized "roles" select field, we add a function
         // that will listen to an event.
-        // 1st argument: The event we want to listne to. Here, PRE_SET_DATA
+        // 1st argument: The event we want to listen to. Here, PRE_SET_DATA
         // 2nd argument: The funtion to be run whenthe event is triggered.
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             // We get our User entity
@@ -53,7 +53,7 @@ class UserType extends AbstractType
             } else {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class, [
                     'data' => ['ROLE_USER']
-                ]);          
+                ]);
             }
         });
     }

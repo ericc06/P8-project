@@ -30,8 +30,6 @@ class UserController extends Controller
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
-        // Without this line, the roles array is empty after creation if "ROLE_USER" is selected. !!! TODO ERIC
-        //$user->setRoles(array("ROLE_USER"));
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -43,7 +41,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', "L'utilisateur a bien été ajouté.");
+            $this->addFlash('success', $this->get('translator')->trans('user_added'));
 
             return $this->redirectToRoute('user_list');
         }
@@ -66,7 +64,7 @@ class UserController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', "L'utilisateur a bien été modifié");
+            $this->addFlash('success', $this->get('translator')->trans('user_modified'));
 
             return $this->redirectToRoute('user_list');
         }

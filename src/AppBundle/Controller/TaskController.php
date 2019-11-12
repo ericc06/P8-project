@@ -7,6 +7,7 @@ use AppBundle\Form\TaskType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\Translator;
 
 class TaskController extends Controller
 {
@@ -15,7 +16,10 @@ class TaskController extends Controller
      */
     public function listAction()
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findAll()]);
+        return $this->render(
+            'task/list.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findAll()]
+        );
     }
 
     /**
@@ -34,7 +38,8 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
-            $this->addFlash('success', 'La tâche a été bien été ajoutée.');
+            
+            $this->addFlash('success', $this->get('translator')->trans('task_added'));
 
             return $this->redirectToRoute('task_list');
         }
@@ -54,7 +59,7 @@ class TaskController extends Controller
         if ($form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'La tâche a bien été modifiée.');
+            $this->addFlash('success', $this->get('translator')->trans('task_modified'));
 
             return $this->redirectToRoute('task_list');
         }
@@ -73,8 +78,16 @@ class TaskController extends Controller
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
-
+        if ($task->isDone()) {
+            $this->addFlash('success', $this->get('translator')->trans('task_marked_as_completed', [
+                '%task_name%' => $task->getTitle()
+            ]));
+        } else {
+            $this->addFlash('success', $this->get('translator')->trans('task_marked_as_uncompleted', [
+                '%task_name%' => $task->getTitle()
+            ]));
+        }
+        
         return $this->redirectToRoute('task_list');
     }
 
@@ -87,7 +100,7 @@ class TaskController extends Controller
         $em->remove($task);
         $em->flush();
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        $this->addFlash('success', $this->get('translator')->trans('task_deleted'));
 
         return $this->redirectToRoute('task_list');
     }
