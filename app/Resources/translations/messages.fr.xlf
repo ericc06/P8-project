@@ -142,7 +142,34 @@
                 <source>email_address</source>
                 <target>Adresse email</target>
             </trans-unit>
-
+            <trans-unit id="task_added">
+                <source>task_added</source>
+                <target>La tâche a été bien été ajoutée.</target>
+            </trans-unit>
+            <trans-unit id="task_modified">
+                <source>task_modified</source>
+                <target>La tâche a bien été modifiée.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_completed">
+                <source>task_marked_as_completed</source>
+                <target>La tâche "%task_name%" a bien été marquée comme faite.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_uncompleted">
+                <source>task_marked_as_uncompleted</source>
+                <target>La tâche "%task_name%" a bien été marquée comme non faite.</target>
+            </trans-unit>
+            <trans-unit id="task_deleted">
+                <source>task_deleted</source>
+                <target>La tâche a bien été supprimée.</target>
+            </trans-unit>
+            <trans-unit id="user_added">
+                <source>user_added</source>
+                <target>L'utilisateur a bien été ajouté.</target>
+            </trans-unit>
+            <trans-unit id="user_modified">
+                <source>user_modified</source>
+                <target>L'utilisateur a bien été modifié.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -141,7 +141,36 @@
             <trans-unit id="email_address">
                 <source>email_address</source>
                 <target>Email address</target>
-            </trans-unit>            <trans-unit id="xxx">
+            </trans-unit>
+            <trans-unit id="task_added">
+                <source>task_added</source>
+                <target>The task has been added.</target>
+            </trans-unit>
+            <trans-unit id="task_modified">
+                <source>task_modified</source>
+                <target>The task has been modified.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_completed">
+                <source>task_marked_as_completed</source>
+                <target>The task "%task_name%" has been marked as completed.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_uncompleted">
+                <source>task_marked_as_uncompleted</source>
+                <target>The task "%task_name%" has been marked as uncompleted.</target>
+            </trans-unit>
+            <trans-unit id="task_deleted">
+                <source>task_deleted</source>
+                <target>The task has been deleted.</target>
+            </trans-unit>
+            <trans-unit id="user_added">
+                <source>user_added</source>
+                <target>The user has been added.</target>
+            </trans-unit>
+            <trans-unit id="user_modified">
+                <source>user_modified</source>
+                <target>The user has been modified.</target>
+            </trans-unit>
+            <trans-unit id="xxx">
                 <source>xxx</source>
                 <target>xxx</target>
             </trans-unit>
