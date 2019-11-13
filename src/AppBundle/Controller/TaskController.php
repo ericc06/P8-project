@@ -23,6 +23,17 @@ class TaskController extends Controller
     }
 
     /**
+     * @Route("/tasks/done", name="task_done_list")
+     */
+    public function listDoneAction()
+    {
+        return $this->render(
+            'task/listDone.html.twig',
+            ['tasks' => $this->getDoctrine()->getRepository('AppBundle:Task')->findBy(['isDone' => true])]
+        );
+    }
+
+    /**
      * @Route("/tasks/create", name="task_create")
      */
     public function createAction(Request $request)
@@ -71,9 +82,9 @@ class TaskController extends Controller
     }
 
     /**
-     * @Route("/tasks/{id}/toggle", name="task_toggle")
+     * @Route("/tasks/{id}/toggle/{goto_url}", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task)
+    public function toggleTaskAction(Task $task, String $goto_url)
     {
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
@@ -88,7 +99,7 @@ class TaskController extends Controller
             ]));
         }
         
-        return $this->redirectToRoute('task_list');
+        return $this->redirectToRoute($goto_url);
     }
 
     /**

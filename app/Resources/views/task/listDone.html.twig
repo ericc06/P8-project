@@ -16,9 +16,9 @@
                     <p>{{ task.content }}</p>
                 </div>
                 <div>
-                    <form action="{{ path('task_toggle', {'id' : task.id, 'goto_url' : 'task_list' }) }}">
+                    <form action="{{ path('task_toggle', {'id' : task.id, 'goto_url' : 'task_done_list' }) }}">
                         <button class="btn btn-success btn-sm pull-right">
-                            {% if not task.isDone %}{{ 'mark_as_completed'|trans }}{% else %}{{ 'mark_as_not_completed'|trans }}{% endif %}
+                            {{ 'mark_as_not_completed'|trans }}
                         </button>
                     </form>
                     <form action="{{ path('task_delete', {'id' : task.id }) }}">
@@ -29,7 +29,7 @@
         </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
-                {{ 'no_registered_task'|trans }} <a href="{{ path('task_create') }}" class="btn btn-warning pull-right">{{ 'create_a_task'|trans }}</a>
+                {{ 'no_completed_task'|trans }}
             </div>
         {% endfor %}
     </div>
