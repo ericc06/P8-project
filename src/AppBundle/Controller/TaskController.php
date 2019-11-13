@@ -49,7 +49,6 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
-            
             $this->addFlash('success', $this->get('translator')->trans('task_added'));
 
             return $this->redirectToRoute('task_list');
