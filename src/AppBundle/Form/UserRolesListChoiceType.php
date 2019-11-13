@@ -41,7 +41,7 @@ class UserRolesListChoiceType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'label' => 'role',
             'choices'  => [
                 'user' => 'ROLE_USER',
@@ -58,7 +58,7 @@ class UserRolesListChoiceType extends AbstractType
             'multiple' => false,
             // By default (new user), we select the select placeholder option (with a null value).
             'data' => null
-        ));
+        ]);
     }
 
     public function getParent()

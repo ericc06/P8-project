@@ -49,7 +49,7 @@ class Task
      */
     private $user;
 
-    public function __construct(User $user = null)
+    public function __construct(User $user=null)
     {
         $this->createdAt = new \Datetime();
         $this->isDone = false;
@@ -100,7 +100,7 @@ class Task
     {
         $this->isDone = $flag;
     }
-    
+
     public function getUser(): ?User
     {
         return $this->user;
