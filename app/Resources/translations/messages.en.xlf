@@ -162,6 +162,10 @@
                 <source>task_deleted</source>
                 <target>The task has been deleted.</target>
             </trans-unit>
+            <trans-unit id="no_completed_task">
+                <source>no_completed_task</source>
+                <target>There is no completed task.</target>
+            </trans-unit>
             <trans-unit id="user_added">
                 <source>user_added</source>
                 <target>The user has been added.</target>
