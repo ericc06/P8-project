@@ -49,7 +49,6 @@ class TaskController extends Controller
             $em->persist($task);
             $em->flush();
 
-            
             $this->addFlash('success', $this->get('translator')->trans('task_added'));
 
             return $this->redirectToRoute('task_list');
@@ -93,12 +92,13 @@ class TaskController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('task_marked_as_completed', [
                 '%task_name%' => $task->getTitle()
             ]));
-        } else {
-            $this->addFlash('success', $this->get('translator')->trans('task_marked_as_uncompleted', [
-                '%task_name%' => $task->getTitle()
-            ]));
+            return $this->redirectToRoute($goto_url);
         }
-        
+
+        $this->addFlash('success', $this->get('translator')->trans('task_marked_as_uncompleted', [
+            '%task_name%' => $task->getTitle()
+        ]));
+
         return $this->redirectToRoute($goto_url);
     }
 
