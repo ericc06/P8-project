@@ -1,0 +1,30 @@
+{# templates/bundles/TwigBundle/Exception/error403.html.twig #}
+
+{% trans_default_domain 'messages' %}
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>{{ 'authorized_access'|trans }}</h1>
+
+    <p>
+        {{ 'not_authorized'|trans }}
+    </p>
+    <p>
+        {{ 'please_logout'
+            |trans({
+                '%link_start%': '<a href="' ~ path('app_logout') ~ '">',
+                '%link_end%': '</a>'
+            })
+            |raw
+        }}<br/>
+        {{ 'or_return_to_homepage'
+            |trans({
+                '%link_start%': '<a href="' ~ path('homepage') ~ '">',
+                '%link_end%': '</a>'
+            })
+            |raw
+        }}
+    </p>
+{% endblock %}
