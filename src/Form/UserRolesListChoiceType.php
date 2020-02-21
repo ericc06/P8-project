@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserRolesListChoiceType extends AbstractType
@@ -24,12 +24,13 @@ class UserRolesListChoiceType extends AbstractType
             // We get the roles array from the user entity, and we return a string
             // corresponding to the select field option values to initialize it.
             function ($rolesAsArray) {
-                if ($rolesAsArray === null) {
+                if (null === $rolesAsArray) {
                     return null;
                 }
                 if (\in_array('ROLE_ADMIN', $rolesAsArray)) {
                     return 'ROLE_ADMIN';
                 }
+
                 return 'ROLE_USER';
             },
             // We transform the string (the value of the selected option) into an array.
@@ -43,7 +44,7 @@ class UserRolesListChoiceType extends AbstractType
     {
         $resolver->setDefaults([
             'label' => 'role',
-            'choices'  => [
+            'choices' => [
                 'user' => 'ROLE_USER',
                 'administrator' => 'ROLE_ADMIN',
             ],
@@ -57,7 +58,7 @@ class UserRolesListChoiceType extends AbstractType
             'required' => true,
             'multiple' => false,
             // By default (new user), we select the select placeholder option (with a null value).
-            'data' => null
+            'data' => null,
         ]);
     }
 
