@@ -10,9 +10,9 @@ use Symfony\Component\Security\Core\Security;
 
 class TaskVoter extends Voter
 {
-    const VIEW   = 'view';
+    const VIEW = 'view';
     const CREATE = 'create';
-    const EDIT   = 'edit';
+    const EDIT = 'edit';
     const TOGGLE = 'toggle';
     const DELETE = 'delete';
 
@@ -72,7 +72,7 @@ class TaskVoter extends Voter
         throw new \LogicException('This code should not be reached!');
     }
 
-    private function canView(Task $task, User $user)
+    private function canView()
     {
         // if they can edit, they can view
         //if ($this->canEdit($task, $user)) {
@@ -84,21 +84,21 @@ class TaskVoter extends Voter
         return true;
     }
 
-    private function canCreate(Task $task, User $user)
+    private function canCreate()
     {
         // If the user is logged in (which was already ckecked previously in voteOnAttribute(...))
         // he/she can create a task.
         return true;
     }
 
-    private function canEdit(Task $task, User $user)
+    private function canEdit()
     {
         // If the user is logged in (which was already ckecked previously in voteOnAttribute(...))
         // he/she can edit all tasks.
         return true;
     }
 
-    private function canToggle(Task $task, User $user)
+    private function canToggle()
     {
         // If the user is logged in (which was already ckecked previously in voteOnAttribute(...))
         // he/she can toggle all tasks.

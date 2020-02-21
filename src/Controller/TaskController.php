@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TaskController extends AbstractController
@@ -32,7 +32,7 @@ class TaskController extends AbstractController
             [
                 'tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll(),
                 'goto_url' => 'task_list',
-                'alert_label' => 'no_registered_task'
+                'alert_label' => 'no_registered_task',
             ]
         );
     }
@@ -50,7 +50,7 @@ class TaskController extends AbstractController
             [
                 'tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone' => true]),
                 'goto_url' => 'task_done_list',
-                'alert_label' => 'no_completed_task'
+                'alert_label' => 'no_completed_task',
             ]
         );
     }
@@ -112,7 +112,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle/{goto_url}", name="task_toggle")
      */
-    public function toggleAction(Task $task, String $goto_url)
+    public function toggleAction(Task $task, string $goto_url)
     {
         // check for "toggle" access: calls all voters
         $this->denyAccessUnlessGranted('toggle', $task);
@@ -122,13 +122,14 @@ class TaskController extends AbstractController
 
         if ($task->isDone()) {
             $this->addFlash('success', $this->translator->trans('task_marked_as_completed', [
-                '%task_name%' => $task->getTitle()
+                '%task_name%' => $task->getTitle(),
             ]));
+
             return $this->redirectToRoute($goto_url);
         }
 
         $this->addFlash('success', $this->translator->trans('task_marked_as_uncompleted', [
-            '%task_name%' => $task->getTitle()
+            '%task_name%' => $task->getTitle(),
         ]));
 
         return $this->redirectToRoute($goto_url);
@@ -141,7 +142,7 @@ class TaskController extends AbstractController
     {
         // check for "delete" access: calls all voters
         $this->denyAccessUnlessGranted('delete', $task);
-        
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();

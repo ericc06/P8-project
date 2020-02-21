@@ -10,13 +10,13 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20190626044052 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('INSERT INTO user (username, password, email) VALUES ("anonymous@system.user", "ano-pwd", "anonymous@system.user")');
         $this->addSql('ALTER TABLE task ADD user_id INT NOT NULL');
@@ -25,13 +25,13 @@ class Version20190626044052 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_527EDB25A76ED395 ON task (user_id)');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema)
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE task DROP FOREIGN KEY FK_527EDB25A76ED395');
         $this->addSql('DROP INDEX IDX_527EDB25A76ED395 ON task');
