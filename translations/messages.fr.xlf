@@ -174,6 +174,26 @@
                 <source>user_modified</source>
                 <target>L'utilisateur a bien été modifié.</target>
             </trans-unit>
+
+            <trans-unit id="authorized_access">
+                <source>authorized_access</source>
+                <target>Accès non autorisé.</target>
+            </trans-unit>
+            <trans-unit id="not_authorized">
+                <source>not_authorized</source>
+                <target>Vous n'êtes pas autorisé(e) à accéder à ce contenu.</target>
+            </trans-unit>
+            <trans-unit id="please_logout">
+                <source>please_logout</source>
+                <target>
+                    Merci de vous %link_start%déconnecter%link_end% puis d'essayer de vous reconnecter 
+                    avec un compte autorisé
+                </target>
+            </trans-unit>
+            <trans-unit id="or_return_to_homepage">
+                <source>or_return_to_homepage</source>
+                <target>ou retournez sur la %link_start%page d'accueil%link_end%.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

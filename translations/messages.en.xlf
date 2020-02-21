@@ -174,11 +174,28 @@
                 <source>user_modified</source>
                 <target>The user has been modified.</target>
             </trans-unit>
+
+            <trans-unit id="authorized_access">
+                <source>authorized_access</source>
+                <target>Unauthorized access.</target>
+            </trans-unit>
+            <trans-unit id="not_authorized">
+                <source>not_authorized</source>
+                <target>You are not authorized to access this content.</target>
+            </trans-unit>
+            <trans-unit id="please_logout">
+                <source>please_logout</source>
+                <target>Please %link_start%log out%link_end% and try to log in with an authorized account</target>
+            </trans-unit>
+            <trans-unit id="or_return_to_homepage">
+                <source>or_return_to_homepage</source>
+                <target>or return to the %link_start%homepage%link_end%.</target>
+            </trans-unit>
+
             <trans-unit id="xxx">
                 <source>xxx</source>
                 <target>xxx</target>
             </trans-unit>
-
         </body>
     </file>
 </xliff>

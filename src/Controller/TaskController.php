@@ -46,6 +46,7 @@ class TaskController extends AbstractController
     public function createAction(Request $request)
     {
         $task = new Task($this->getUser());
+
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -90,7 +91,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle/{goto_url}", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task, String $goto_url)
+    public function toggleAction(Task $task, String $goto_url)
     {
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
@@ -112,7 +113,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteAction(Task $task)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
