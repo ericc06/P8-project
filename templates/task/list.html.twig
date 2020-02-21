@@ -3,33 +3,46 @@
 {% block header_img %}<img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">{% endblock %}
 
 {% block body %}
-    <a href="{{ path('task_create') }}" class="btn btn-info pull-right">{{ 'create_a_task'|trans }}</a>
+    {% include 'default/task_buttons.html.twig' with {'current_page': goto_url} %}
     <div class="row">
         {% for task in tasks %}
         <div class="col-sm-4 col-lg-4 col-md-4">
             <div class="thumbnail">
-                <div class="caption">
+                <div class="thumbnail-header">
                     <h4 class="pull-right">
                         {% if task.isDone %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}
                     </h4>
                     <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                </div>
+                <div class="caption">
                     <p>{{ task.content }}</p>
                 </div>
-                <div>
-                    <form action="{{ path('task_toggle', {'id' : task.id, 'goto_url' : 'task_list' }) }}">
+                <div class="owner">
+                    <p class="pull-bottom">{{ 'owner'|trans }}
+                        {% if task.user.username is same as("anonymous@system.user") %}
+                        -
+                        {% else %}
+                        {{ task.user.username }}
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="{{ path('task_toggle', {'id' : task.id, 'goto_url' : goto_url }) }}">
                         <button class="btn btn-success btn-sm pull-right">
                             {% if not task.isDone %}{{ 'mark_as_completed'|trans }}{% else %}{{ 'mark_as_not_completed'|trans }}{% endif %}
                         </button>
                     </form>
+                    {% if app.user is same as(task.user) or is_granted('ROLE_ADMIN') %}
                     <form action="{{ path('task_delete', {'id' : task.id }) }}">
                         <button class="btn btn-danger btn-sm pull-right">{{ 'delete'|trans }}</button>
                     </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
-                {{ 'no_registered_task'|trans }}
+                {{ alert_label|trans }}
             </div>
         {% endfor %}
     </div>
