@@ -23,9 +23,17 @@ class TaskController extends AbstractController
      */
     public function listAction()
     {
+        // check for "view" access: calls all voters
+        //$this->denyAccessUnlessGranted('view', $task);
+
+        // 'goto_url' is also used to initialize the template 'current_page' variable
         return $this->render(
             'task/list.html.twig',
-            ['tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll()]
+            [
+                'tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll(),
+                'goto_url' => 'task_list',
+                'alert_label' => 'no_registered_task'
+            ]
         );
     }
 
@@ -34,9 +42,16 @@ class TaskController extends AbstractController
      */
     public function listDoneAction()
     {
+        // check for "view" access: calls all voters
+        //$this->denyAccessUnlessGranted('view', $task);
+
         return $this->render(
-            'task/listDone.html.twig',
-            ['tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone' => true])]
+            'task/list.html.twig',
+            [
+                'tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone' => true]),
+                'goto_url' => 'task_done_list',
+                'alert_label' => 'no_completed_task'
+            ]
         );
     }
 
@@ -45,6 +60,9 @@ class TaskController extends AbstractController
      */
     public function createAction(Request $request)
     {
+        // check for "create" access: calls all voters
+        //$this->denyAccessUnlessGranted('create', $task);
+
         $task = new Task($this->getUser());
 
         $form = $this->createForm(TaskType::class, $task);
@@ -70,6 +88,9 @@ class TaskController extends AbstractController
      */
     public function editAction(Task $task, Request $request)
     {
+        // check for "edit" access: calls all voters
+        $this->denyAccessUnlessGranted('edit', $task);
+
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -93,6 +114,9 @@ class TaskController extends AbstractController
      */
     public function toggleAction(Task $task, String $goto_url)
     {
+        // check for "toggle" access: calls all voters
+        $this->denyAccessUnlessGranted('toggle', $task);
+
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
@@ -115,6 +139,9 @@ class TaskController extends AbstractController
      */
     public function deleteAction(Task $task)
     {
+        // check for "delete" access: calls all voters
+        $this->denyAccessUnlessGranted('delete', $task);
+        
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();

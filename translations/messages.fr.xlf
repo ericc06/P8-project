@@ -174,7 +174,6 @@
                 <source>user_modified</source>
                 <target>L'utilisateur a bien été modifié.</target>
             </trans-unit>
-
             <trans-unit id="authorized_access">
                 <source>authorized_access</source>
                 <target>Accès non autorisé.</target>
@@ -193,6 +192,10 @@
             <trans-unit id="or_return_to_homepage">
                 <source>or_return_to_homepage</source>
                 <target>ou retournez sur la %link_start%page d'accueil%link_end%.</target>
+            </trans-unit>
+            <trans-unit id="owner">
+                <source>owner</source>
+                <target>Propriétaire:</target>
             </trans-unit>
         </body>
     </file>

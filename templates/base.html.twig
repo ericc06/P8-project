@@ -32,12 +32,13 @@
 
                     <img src="{{ asset('img/Logo_OpenClassrooms.png') }}" alt="OpenClassrooms" />
                 </div>
+                <div class="pull-right username">{{ app.user.username }}</div>
             </div>
         </nav>
 
         <!-- Page Content -->
         <div class="container">
-            <div class="row">
+            <div class="row top-buttons-bar">
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('user_create') }}" class="btn btn-primary">{{ 'create_a_user'|trans }}</a>
                 <a href="{{ path('user_list') }}" class="btn btn-primary">{{ 'list_users'|trans }}</a>
