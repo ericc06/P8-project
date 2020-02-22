@@ -22,9 +22,10 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'both_passwords_must_match',
-                'required' => true,
+                'required' => false,
                 'first_options' => ['label' => 'login_password'],
                 'second_options' => ['label' => 'type_password_again'],
+                'validation_groups' => $options['validation_groups'],
             ])
             ->add('email', EmailType::class, ['label' => 'email_address'])
         ;
@@ -40,12 +41,12 @@ class UserType extends AbstractType
             // If the user or his name is null, no existing value is selected in the select field.
             if ((null === $user) || (null === $user->getUsername())) {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class);
-                // If the user has the 'ROLE_ADMIN' role, this value is selected in the select field.
+            // If the user has the 'ROLE_ADMIN' role, this value is selected in the select field.
             } elseif (\in_array('ROLE_ADMIN', $user->getRoles())) {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class, [
                     'data' => ['ROLE_ADMIN'],
                 ]);
-                // Else, the user has the 'ROLE_USER' role and we select this value on form load.
+            // Else, the user has the 'ROLE_USER' role and we select this value on form load.
             } else {
                 $event->getForm()->add('roles', UserRolesListChoiceType::class, [
                     'data' => ['ROLE_USER'],
