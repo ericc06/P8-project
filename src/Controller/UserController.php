@@ -40,7 +40,11 @@ class UserController extends AbstractController
     public function createAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(
+            UserType::class,
+            $user,
+            ['validation_groups' => 'creation']
+        );
 
         $form->handleRequest($request);
 
@@ -67,7 +71,11 @@ class UserController extends AbstractController
      */
     public function editAction(User $user, Request $request)
     {
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(
+            UserType::class,
+            $user,
+            ['validation_groups' => 'update']
+        );
 
         $form->handleRequest($request);
 

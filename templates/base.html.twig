@@ -32,7 +32,11 @@
 
                     <img src="{{ asset('img/Logo_OpenClassrooms.png') }}" alt="OpenClassrooms" />
                 </div>
-                <div class="pull-right username">{{ app.user.username }}</div>
+                <div class="pull-right username">
+                    {% if app.user %}
+                    {{ app.user.username }}
+                    {% endif %}
+                </div>
             </div>
         </nav>
 
