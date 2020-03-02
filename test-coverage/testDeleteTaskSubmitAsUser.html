@@ -1,0 +1,486 @@
+PHPUnit 7.5.20 by Sebastian Bergmann and contributors.
+
+Testing App\Tests\Controller\TaskControllerTest
+[33;1mR[0m                                                                   1 / 1 (100%)<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>To Do List app</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/css/shop-homepage.css" rel="stylesheet">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">To Do List app</a>
+
+                    <img src="/img/Logo_OpenClassrooms.png" alt="OpenClassrooms" />
+                </div>
+                <div class="pull-right username">
+                                        Eric
+                                    </div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row top-buttons-bar">
+                
+                                <a href="/logout" class="pull-right btn btn-danger">Se déconnecter</a>
+                
+                            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    
+                                        <img class="slide-image" src="/img/todolist_content.jpg" alt="todo list">                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-12">
+                            <div class="row task-buttons-bar">
+        <a href="/tasks/create" class="btn btn-success">Créer une nouvelle tâche</a>
+                        <a href="/tasks/done" class="btn btn-primary">Consulter la liste des tâches terminées</a>
+            </div>
+    <div class="row">
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/118/edit">Tâche anonyme n°1</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est une tâche rattachée à l&#039;utilisateur anonyme.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                -
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/118/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/121/edit">Tâche Eric n°1</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°1. Elle a été créée par Eric.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Eric
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/121/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                        <form action="/tasks/121/delete">
+                        <button class="btn btn-danger btn-sm pull-right" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/122/edit">Tâche Eric n°2</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°2. Elle a été créée par Eric.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Eric
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/122/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                        <form action="/tasks/122/delete">
+                        <button class="btn btn-danger btn-sm pull-right" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/123/edit">Tâche Eric n°3</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°3. Elle a été créée par Eric.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Eric
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/123/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                        <form action="/tasks/123/delete">
+                        <button class="btn btn-danger btn-sm pull-right" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/124/edit">Tâche Eric n°4</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°4. Elle a été créée par Eric.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Eric
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/124/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                        <form action="/tasks/124/delete">
+                        <button class="btn btn-danger btn-sm pull-right" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/125/edit">Tâche Eric n°5</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°5. Elle a été créée par Eric.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Eric
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/125/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                        <form action="/tasks/125/delete">
+                        <button class="btn btn-danger btn-sm pull-right" onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/126/edit">Tâche Carine n°1</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°1. Elle a été créée par Carine.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Carine
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/126/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/127/edit">Tâche Carine n°2</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°2. Elle a été créée par Carine.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Carine
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/127/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/128/edit">Tâche Carine n°3</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°3. Elle a été créée par Carine.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Carine
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/128/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/129/edit">Tâche Carine n°4</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°4. Elle a été créée par Carine.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Carine
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/129/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/130/edit">Tâche Carine n°5</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°5. Elle a été créée par Carine.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Carine
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/130/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/131/edit">Tâche Marc n°1</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°1. Elle a été créée par Marc.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Marc
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/131/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/132/edit">Tâche Marc n°2</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°2. Elle a été créée par Marc.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Marc
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/132/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/133/edit">Tâche Marc n°3</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°3. Elle a été créée par Marc.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Marc
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/133/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/134/edit">Tâche Marc n°4</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°4. Elle a été créée par Marc.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Marc
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/134/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+                <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <div class="thumbnail-header">
+                    <h4 class="pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>                    </h4>
+                    <h4><a href="/tasks/135/edit">Tâche Marc n°5</a></h4>
+                </div>
+                <div class="caption">
+                    <p>Ceci est la tâche n°5. Elle a été créée par Marc.</p>
+                </div>
+                <div class="owner">
+                    <p class="pull-bottom">Propriétaire:
+                                                Marc
+                                            </p>
+                </div>
+                <div class="thumbnail-buttons">
+                    <form action="/tasks/135/toggle/task_list">
+                        <button class="btn btn-success btn-sm pull-right">
+                            Marquer comme faite                        </button>
+                    </form>
+                                    </div>
+            </div>
+        </div>
+            </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+
+        <div class="container">
+
+            <hr>
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="pull-right">Copyright &copy; OpenClassrooms</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+        <script src="/js/jquery.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+
+Time: 2.44 seconds, Memory: 24.00 MB
+
+There was 1 risky test:
+
+1) App\Tests\Controller\TaskControllerTest::testDeleteTaskSubmitAsUser
+This test did not perform any assertions
+
+C:\wamp64\www\p8-project\tests\Controller\TaskControllerTest.php:499
+
+[30;43mOK, but incomplete, skipped, or risky tests![0m
+[30;43mTests: 1[0m[30;43m, Assertions: 0[0m[30;43m, Risky: 1[0m[30;43m.[0m

@@ -21,48 +21,39 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks", name="task_list")
      */
-    public function listAction()
+    public function list()
     {
-        // check for "view" access: calls all voters
-        //$this->denyAccessUnlessGranted('view', $task);
-
         // 'goto_url' is also used to initialize the template 'current_page' variable
-        return $this->render(
-            'task/list.html.twig',
-            [
-                'tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll(),
-                'goto_url' => 'task_list',
-                'alert_label' => 'no_registered_task',
-            ]
-        );
+        return $this->render('task/list.html.twig', [
+            'tasks' => $this
+                ->getDoctrine()
+                ->getRepository('App:Task')
+                ->findBy(['isDone' => false]),
+            'goto_url' => 'task_list',
+            'alert_label' => 'no_registered_task',
+        ]);
     }
 
     /**
      * @Route("/tasks/done", name="task_done_list")
      */
-    public function listDoneAction()
+    public function listDone()
     {
-        // check for "view" access: calls all voters
-        //$this->denyAccessUnlessGranted('view', $task);
-
-        return $this->render(
-            'task/list.html.twig',
-            [
-                'tasks' => $this->getDoctrine()->getRepository('App:Task')->findBy(['isDone' => true]),
-                'goto_url' => 'task_done_list',
-                'alert_label' => 'no_completed_task',
-            ]
-        );
+        return $this->render('task/list.html.twig', [
+            'tasks' => $this
+                ->getDoctrine()
+                ->getRepository('App:Task')
+                ->findBy(['isDone' => true]),
+            'goto_url' => 'task_done_list',
+            'alert_label' => 'no_completed_task',
+        ]);
     }
 
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(Request $request)
+    public function create(Request $request)
     {
-        // check for "create" access: calls all voters
-        //$this->denyAccessUnlessGranted('create', $task);
-
         $task = new Task($this->getUser());
 
         $form = $this->createForm(TaskType::class, $task);
@@ -80,13 +71,15 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_list');
         }
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->render('task/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request)
+    public function edit(Task $task, Request $request)
     {
         // check for "edit" access: calls all voters
         $this->denyAccessUnlessGranted('edit', $task);
@@ -112,7 +105,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle/{goto_url}", name="task_toggle")
      */
-    public function toggleAction(Task $task, string $goto_url)
+    public function toggle(Task $task, string $goto_url)
     {
         // check for "toggle" access: calls all voters
         $this->denyAccessUnlessGranted('toggle', $task);
@@ -138,7 +131,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteAction(Task $task)
+    public function delete(Task $task)
     {
         // check for "delete" access: calls all voters
         $this->denyAccessUnlessGranted('delete', $task);
