@@ -305,7 +305,7 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'admin',
         ]);
 
-        $crawler = $this->client->submitForm('Modifier', [
+        $this->client->submitForm('Modifier', [
             'task[title]' => 'Tâche anonyme n°1 modif',
             'task[content]' => 'This is the task modified content.',
         ]);
@@ -325,7 +325,7 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'eric',
         ]);
 
-        $crawler = $this->client->submitForm('Modifier', [
+        $this->client->submitForm('Modifier', [
             'task[title]' => 'Tâche anonyme n°1 modif',
             'task[content]' => 'This is the task modified content.',
         ]);
@@ -504,7 +504,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testAllDeleteTaskButtonsArePresentForAdmin()
     {
-        $crawler = $this->client->request('GET', '/tasks', [], [], [
+        $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'admin',
         ]);
@@ -520,7 +520,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testOnlyOwnersDeleteTaskButtonsArePresentForUser()
     {
-        $crawler = $this->client->request('GET', '/tasks', [], [], [
+        $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'eric',
             'PHP_AUTH_PW' => 'eric',
         ]);
@@ -565,7 +565,7 @@ class TaskControllerTest extends WebTestCase
         // Then we delete it
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $crawler = $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
+        $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'admin',
         ]);
@@ -597,7 +597,7 @@ class TaskControllerTest extends WebTestCase
         // Then we delete it
         $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
 
-        $crawler = $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
+        $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
             'PHP_AUTH_USER' => 'eric',
             'PHP_AUTH_PW' => 'eric',
         ]);

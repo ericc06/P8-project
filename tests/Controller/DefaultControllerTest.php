@@ -31,9 +31,7 @@ class DefaultControllerTest extends WebTestCase
         // to the login form page.
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
         $this->assertRegExp('/login$/', $client->getResponse()->headers->get('Location'));
-        //$this->assertResponseRedirects('https://example.com', 301);
 
-        //$crawler = $this->client->followRedirect();
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('.navbar-brand', 'To Do List app');
@@ -75,6 +73,5 @@ class DefaultControllerTest extends WebTestCase
 
         // avoid memory leaks
         $this->client = null;
-        $this->crawler = null;
     }
 }
