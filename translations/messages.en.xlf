@@ -194,6 +194,26 @@
                 <source>or_return_to_homepage</source>
                 <target>or return to the %link_start%homepage%link_end%.</target>
             </trans-unit>
+            <trans-unit id="page_not_found">
+                <source>page_not_found</source>
+                <target>Page not found.</target>
+            </trans-unit>
+            <trans-unit id="requested_page_not_found">
+                <source>requested_page_not_found</source>
+                <target>The requested page was not found on this server.</target>
+            </trans-unit>
+            <trans-unit id="return_to_homepage">
+                <source>return_to_homepage</source>
+                <target>Return to the %link_start%homepage%link_end%.</target>
+            </trans-unit>
+            <trans-unit id="an_error_occurred">
+                <source>an_error_occurred</source>
+                <target>An error occurred.</target>
+            </trans-unit>
+            <trans-unit id="the_server_encoutered_an_error">
+                <source>the_server_encoutered_an_error</source>
+                <target>The server encoutered an error.</target>
+            </trans-unit>
             <trans-unit id="owner">
                 <source>owner</source>
                 <target>Owner:</target>

@@ -1,0 +1,23 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+
+{% trans_default_domain 'messages' %}
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>{{ 'page_not_found'|trans }}</h1>
+
+    <p>
+        {{ 'requested_page_not_found'|trans }}
+    </p>
+    <p>
+        {{ 'return_to_homepage'
+            |trans({
+                '%link_start%': '<a href="' ~ path('homepage') ~ '">',
+                '%link_end%': '</a>'
+            })
+            |raw
+        }}
+    </p>
+{% endblock %}

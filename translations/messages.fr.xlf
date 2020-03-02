@@ -197,6 +197,26 @@
                 <source>or_return_to_homepage</source>
                 <target>ou retournez sur la %link_start%page d'accueil%link_end%.</target>
             </trans-unit>
+            <trans-unit id="page_not_found">
+                <source>page_not_found</source>
+                <target>Page non trouvée.</target>
+            </trans-unit>
+            <trans-unit id="requested_page_not_found">
+                <source>requested_page_not_found</source>
+                <target>La page demandée n'a pas été trouvée sur ce serveur.</target>
+            </trans-unit>
+            <trans-unit id="return_to_homepage">
+                <source>return_to_homepage</source>
+                <target>Retourner sur la %link_start%page d'accueil%link_end%.</target>
+            </trans-unit>
+            <trans-unit id="an_error_occurred">
+                <source>an_error_occurred</source>
+                <target>Une erreur est survenue.</target>
+            </trans-unit>
+            <trans-unit id="the_server_encoutered_an_error">
+                <source>the_server_encoutered_an_error</source>
+                <target>Le serveur a rencontré une erreur.</target>
+            </trans-unit>
             <trans-unit id="owner">
                 <source>owner</source>
                 <target>Propriétaire:</target>

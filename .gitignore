@@ -15,3 +15,5 @@
 /phpunit.xml
 /test-coverage/
 ###< symfony/phpunit-bridge ###
+
+/cc.bat
