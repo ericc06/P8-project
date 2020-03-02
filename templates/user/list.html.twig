@@ -23,19 +23,21 @@
                 </thead>
                 <tbody>
                 {% for user in users %}
-                    <tr>
-                        <th scope="row">{{ loop.index }}</th>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email }}</td>
-                        {% if 'ROLE_ADMIN' in user.roles %}
-                        <td>{{ 'administrator'|trans }}</td>
-                        {% else %}
-                        <td>{{ 'user'|trans }}</td>
-                        {% endif %}
-                        <td>
-                            <a href="{{ path('user_edit', {'id' : user.id}) }}" class="btn btn-success btn-sm">{{ 'edit'|trans }}</a>
-                        </td>
-                    </tr>
+                    {% if user.username != "anonymous@system.user" %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            {% if 'ROLE_ADMIN' in user.roles %}
+                            <td>{{ 'administrator'|trans }}</td>
+                            {% else %}
+                            <td>{{ 'user'|trans }}</td>
+                            {% endif %}
+                            <td>
+                                <a href="{{ path('user_edit', {'id' : user.id}) }}" class="btn btn-success btn-sm">{{ 'edit'|trans }}</a>
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
                 </tbody>
             </table>
