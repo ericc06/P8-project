@@ -25,12 +25,10 @@ class TaskType extends AbstractType
     }
 
     /**
-     *  Additional fields (if you want to edit them), the values shown are the default
-     * 
+     *  Additional fields (if you want to edit them), the values shown are the default.
+     *
      * 'csrf_protection' => true,
      * 'csrf_field_name' => '_token', // This must match in your test
-     *
-     * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {

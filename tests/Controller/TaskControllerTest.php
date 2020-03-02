@@ -1,4 +1,5 @@
 <?php
+
 // tests/Controller/TaskControllerTest.php
 
 namespace App\Tests\Controller;
@@ -29,7 +30,6 @@ class TaskControllerTest extends WebTestCase
 
     public function testListUndoneTasksNotLoggedIn()
     {
-
         $this->client->request('GET', '/tasks');
 
         // When requesting the "/tasks" URL not being logged in,
@@ -182,7 +182,7 @@ class TaskControllerTest extends WebTestCase
         //$crawler = $this->client->request('GET', '/tasks/create');
         $this->client->request('GET', '/tasks/create', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         /*$this->assertContains(
@@ -229,7 +229,7 @@ class TaskControllerTest extends WebTestCase
     {
         $this->client->request('GET', '/tasks/create', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         $this->client->submitForm('Ajouter', [
@@ -272,11 +272,11 @@ class TaskControllerTest extends WebTestCase
 
         $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         //echo $this->client->getResponse()->getContent();
-        
+
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('button', 'Modifier');
@@ -293,7 +293,7 @@ class TaskControllerTest extends WebTestCase
 
         $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
@@ -311,7 +311,7 @@ class TaskControllerTest extends WebTestCase
 
         $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         $crawler = $this->client->submitForm('Modifier', [
@@ -331,7 +331,7 @@ class TaskControllerTest extends WebTestCase
 
         $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         $crawler = $this->client->submitForm('Modifier', [
@@ -373,7 +373,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         // We first check that the task to be toggled "done" exists in the undone tasks list page
@@ -402,7 +402,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         // We first check that the task to be toggled "done" exists in the undone tasks list page
@@ -411,7 +411,7 @@ class TaskControllerTest extends WebTestCase
         // and the task we are looking for is not the first one in the displayed list of tasks.
         // See: https://github.com/symfony/symfony-docs/issues/13036
         //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
-        $this->assertGreaterThan( 0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
 
         // Then we toggle it "done"
         $form = $crawler
@@ -429,8 +429,6 @@ class TaskControllerTest extends WebTestCase
         );
         $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°1');
     }
-
-
 
     public function testToggleDoneTaskUndoneNotLoggedIn()
     {
@@ -460,7 +458,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks/done', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         // We first check that the task to be toggled "undone" exists in the done tasks list page
@@ -489,7 +487,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks/done', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         // We first check that the task to be toggled "undone" exists in the done tasks list page
@@ -498,7 +496,7 @@ class TaskControllerTest extends WebTestCase
         // and the task we are looking for is not the first one in the displayed list of tasks.
         // See: https://github.com/symfony/symfony-docs/issues/13036
         //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°5');
-        $this->assertGreaterThan( 0, $crawler->filter('h4 > a:contains("Tâche Eric n°5")')->count());
+        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°5")')->count());
 
         // Then we toggle it "undone"
         $form = $crawler
@@ -517,13 +515,11 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°5');
     }
 
-
-
     public function testAllDeleteTaskButtonsArePresentForAdmin()
     {
         $crawler = $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         // Counting the number of forms having action like /tasks/143/delete
@@ -531,7 +527,7 @@ class TaskControllerTest extends WebTestCase
             '/action="\/tasks\/[0-9]+\/delete"/',
             $this->client->getResponse()->getContent()
         );
-        
+
         $this->assertEquals(13, $count);
     }
 
@@ -539,7 +535,7 @@ class TaskControllerTest extends WebTestCase
     {
         $crawler = $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         // Counting the number of forms having action like /tasks/143/delete
@@ -547,7 +543,7 @@ class TaskControllerTest extends WebTestCase
             '/action="\/tasks\/[0-9]+\/delete"/',
             $this->client->getResponse()->getContent()
         );
-        
+
         $this->assertEquals(4, $count);
     }
 
@@ -574,7 +570,7 @@ class TaskControllerTest extends WebTestCase
         // We first check that the task to be deleted exists in the task list page
         $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         $this->assertSelectorTextContains('h4 > a', 'Tâche anonyme n°1');
@@ -584,7 +580,7 @@ class TaskControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW'   => 'admin',
+            'PHP_AUTH_PW' => 'admin',
         ]);
 
         $crawler = $this->client->followRedirect();
@@ -602,7 +598,7 @@ class TaskControllerTest extends WebTestCase
         // We first check that the task to be deleted exists in the task list page
         $crawler = $this->client->request('GET', '/tasks', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         // echo $this->client->getResponse()->getContent();
@@ -611,14 +607,14 @@ class TaskControllerTest extends WebTestCase
         // and the task we are looking for is not the first one in the displayed list of tasks.
         // See: https://github.com/symfony/symfony-docs/issues/13036
         //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
-        $this->assertGreaterThan( 0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
-        
+        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
+
         // Then we delete it
         $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
 
         $crawler = $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
             'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW'   => 'eric',
+            'PHP_AUTH_PW' => 'eric',
         ]);
 
         $crawler = $this->client->followRedirect();
@@ -631,7 +627,6 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°1');
     }
 
-    
     // Currently not used
     private function logInAsAdmin()
     {
@@ -645,7 +640,7 @@ class TaskControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('admin', 'admin', $firewallName, ['ROLE_ADMIN']);
-        $session->set('_security_' . $firewallContext, serialize($token));
+        $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
@@ -665,7 +660,7 @@ class TaskControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('eric', 'eric', $firewallName, ['ROLE_USER']);
-        $session->set('_security_' . $firewallContext, serialize($token));
+        $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());

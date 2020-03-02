@@ -1,4 +1,5 @@
 <?php
+
 // tests/Controller/UserControllerTest.php
 
 namespace App\Tests\Controller;
@@ -108,7 +109,7 @@ class UserControllerTest extends WebTestCase
         $this->logInAsUser();
 
         $this->expectException(AccessDeniedException::class);
-        
+
         $this->client->request('GET', '/users/create');
 
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
@@ -226,7 +227,7 @@ class UserControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('admin', 'admin', $firewallName, ['ROLE_ADMIN']);
-        $session->set('_security_' . $firewallContext, serialize($token));
+        $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());
@@ -245,7 +246,7 @@ class UserControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('eric', 'eric', $firewallName, ['ROLE_USER']);
-        $session->set('_security_' . $firewallContext, serialize($token));
+        $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());

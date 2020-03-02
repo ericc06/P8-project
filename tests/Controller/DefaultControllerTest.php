@@ -1,4 +1,5 @@
 <?php
+
 // tests/Controller/DefaultControllerTest.php
 
 namespace App\Tests\Controller;
@@ -36,8 +37,6 @@ class DefaultControllerTest extends WebTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('.navbar-brand', 'To Do List app');
-
-        
     }
 
     public function testIndexLoggedInAsUser()
@@ -63,7 +62,7 @@ class DefaultControllerTest extends WebTestCase
         // you may need to use a different token class depending on your application.
         // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
         $token = new UsernamePasswordToken('eric', 'eric', $firewallName, ['ROLE_USER']);
-        $session->set('_security_' . $firewallContext, serialize($token));
+        $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
 
         $cookie = new Cookie($session->getName(), $session->getId());

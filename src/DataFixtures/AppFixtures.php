@@ -75,10 +75,10 @@ class AppFixtures extends Fixture
                 $task->setTitle('Tâche '.$usernames[$i].' n°'.$t);
                 $task->setContent('Ceci est la tâche n°'.$t.'. Elle a été créée par '.$usernames[$i].'.');
 
-                if ($t == 5) {
+                if (5 == $t) {
                     $task->toggle(true);
                 }
-    
+
                 $manager->persist($task);
             }
 

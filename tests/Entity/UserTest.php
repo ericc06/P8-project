@@ -1,13 +1,13 @@
 <?php
+
 // tests/Controller/UserTest.php
 
 namespace App\Tests\Entity;
 
 use App\Entity\Task;
 use App\Entity\User;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use \Doctrine\Common\Collections\ArrayCollection;
 
 class UserTest extends KernelTestCase
 {
@@ -51,7 +51,7 @@ class UserTest extends KernelTestCase
         $this->assertEquals('ROLE_ADMIN', $this->user->getRoles()[0]);
         $this->assertEquals(2, sizeof($this->user->getRoles()));
     }
-    
+
     public function testGetRoles()
     {
         $this->assertEquals('ROLE_USER', $this->user->getRoles()[0]);
@@ -98,7 +98,6 @@ class UserTest extends KernelTestCase
         $this->manager->flush();
 
         $this->user->addTask($task);
-
 
         // Getting an ArrayCollection containing 6 tasks
         $tasks = $this->user->getTasks();
