@@ -6,6 +6,17 @@
                 <source>both_passwords_must_match</source>
                 <target>Les deux mots de passe doivent correspondre.</target>
             </trans-unit>
-        </body>
+            <trans-unit id="email.exists">
+                <source>email.exists</source>
+                <target>Cette adresse email est déjà utilisée.</target>
+            </trans-unit>
+            <trans-unit id="email.format.incorrect">
+                <source>email.format.incorrect</source>
+                <target>Le format de l'adresse n'est pas correcte.</target>
+            </trans-unit>
+            <trans-unit id="username.required">
+                <source>username.required</source>
+                <target>Merci de saisir un nom d'utilisateur.</target>
+            </trans-unit>        </body>
     </file>
 </xliff>

@@ -158,6 +158,10 @@
                 <source>task_marked_as_uncompleted</source>
                 <target>La tâche "%task_name%" a bien été marquée comme non faite.</target>
             </trans-unit>
+            <trans-unit id="confirm_delete_task">
+                <source>confirm_delete_task</source>
+                <target>Etes-vous sûr(e) de vouloir supprimer cette tâche ?</target>
+            </trans-unit>
             <trans-unit id="task_deleted">
                 <source>task_deleted</source>
                 <target>La tâche a bien été supprimée.</target>

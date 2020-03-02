@@ -4,6 +4,6 @@
         <a href="{{ path('task_list') }}" class="btn btn-info">{{ 'view_tasks_to_be_done'|trans }}</a>
         {% endif %}
         {% if current_page is not same as('task_done_list')%}
-        <a href="{{ path('task_done_list') }}" class="btn btn-secondary">{{ 'view_completed_tasks'|trans }}</a>
+        <a href="{{ path('task_done_list') }}" class="btn btn-primary">{{ 'view_completed_tasks'|trans }}</a>
         {% endif %}
     </div>

@@ -13,7 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table("user")
  * @ORM\Entity
  * @UniqueEntity("username")
- * @UniqueEntity("email")
+ * //@UniqueEntity("email")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="email.exists",
+ *     groups={"creation","update"}
+ * )
  */
 class User implements UserInterface
 {
@@ -26,7 +31,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
+     * @Assert\NotBlank(message="username.required")
      */
     private $username;
 
@@ -39,7 +44,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @Assert\Email(message="email.format.incorrect")
      */
     private $email;
 
@@ -164,9 +169,9 @@ class User implements UserInterface
     /**
      * Set task.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function setTasks(Collection $tasks): self
+    public function setTasks(ArrayCollection $tasks): self
     {
         $this->tasks = $tasks;
 
