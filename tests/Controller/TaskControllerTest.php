@@ -45,7 +45,7 @@ class TaskControllerTest extends WebTestCase
     public function testListUndoneTasksAsAdmin()
     {
         $this->logInAsAdmin();
-        $crawler = $this->client->request('GET', '/tasks');
+        $this->client->request('GET', '/tasks');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -102,7 +102,7 @@ class TaskControllerTest extends WebTestCase
     public function testListDoneTasksAsAdmin()
     {
         $this->logInAsAdmin();
-        $crawler = $this->client->request('GET', '/tasks/done');
+        $this->client->request('GET', '/tasks/done');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -185,11 +185,6 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'admin',
         ]);
 
-        /*$this->assertContains(
-            'Lister les utilisateurs',
-            $this->client->getResponse()->getContent()
-        );*/
-
         $this->client->submitForm('Ajouter', [
             'task[title]' => 'My admin task',
             'task[content]' => 'This is the task content.',
@@ -207,11 +202,9 @@ class TaskControllerTest extends WebTestCase
         */
         // Create our CSRF token - with $intention = `post_type`
         //$csrfToken = $this->client->getContainer()->get('security.csrf.token_manager')->getToken('task_type');
-        //echo '**'.$csrfToken.'**';
         //$form['task[_token]'] = $csrfToken; // Add it to your `csrf_field_name`
         //$this->client->submit($form);
 
-        //echo $this->client->getResponse()->getContent();
         $crawler = $this->client->followRedirect();
 
         $this->assertResponseIsSuccessful();
@@ -274,8 +267,6 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'admin',
             'PHP_AUTH_PW' => 'admin',
         ]);
-
-        //echo $this->client->getResponse()->getContent();
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -354,8 +345,6 @@ class TaskControllerTest extends WebTestCase
         //$this->expectException(AccessDeniedException::class);
 
         $this->client->request('GET', '/tasks/'.$task_id.'/toggle/task_list');
-
-//        echo $this->client->getResponse()->getContent();
 
         // When requesting this URL not being logged in,
         // we should be redirected (with status code 302) to the login form page.
@@ -439,8 +428,6 @@ class TaskControllerTest extends WebTestCase
         //$this->expectException(AccessDeniedException::class);
 
         $this->client->request('GET', '/tasks/'.$task_id.'/toggle/task_list');
-
-//        echo $this->client->getResponse()->getContent();
 
         // When requesting this URL not being logged in,
         // we should be redirected (with status code 302) to the login form page.
@@ -600,8 +587,6 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'eric',
             'PHP_AUTH_PW' => 'eric',
         ]);
-
-        // echo $this->client->getResponse()->getContent();
 
         // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
         // and the task we are looking for is not the first one in the displayed list of tasks.

@@ -68,14 +68,8 @@ class UserControllerTest extends WebTestCase
         // When requesting the "/user" URL while being connected as user,
         // we should be redirected (with status code 403) to access denied exception.
         $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
-        //\var_dump($this->client->getResponse());
         //$this->assertRegExp('/login$/', $client->getResponse()->headers->get('Location'));
         //$this->assertResponseRedirects('https://example.com', 301);
-
-        /*$this->assertContains(
-            'Access Denied.',
-            $this->client->getResponse()->getContent()
-        );*/
     }
 
     public function testCreateUserAccessNotLoggedIn()
@@ -131,7 +125,7 @@ class UserControllerTest extends WebTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
-        //$this->assertSelectorTextContains('td', 'tom@mail.loc');  !!!!
+        //$this->assertSelectorTextContains('td', 'tom@mail.loc');
     }
 
     public function testCreateUserSubmitWithoutRole()
@@ -149,7 +143,7 @@ class UserControllerTest extends WebTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
-        //$this->assertSelectorTextContains('td', 'tom@mail.loc');  !!!!
+        //$this->assertSelectorTextContains('td', 'tom@mail.loc');
     }
 
     public function testEditUserAccessNotLoggedIn()
@@ -212,7 +206,7 @@ class UserControllerTest extends WebTestCase
         $this->client->followRedirect();
 
         $this->assertSelectorTextContains('h1', 'Liste des utilisateurs');
-        //$this->assertSelectorTextContains('td', 'eric-modif@mail.loc');  !!!!
+        //$this->assertSelectorTextContains('td', 'eric-modif@mail.loc');
     }
 
     private function logInAsAdmin()
