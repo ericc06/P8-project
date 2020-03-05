@@ -30,10 +30,12 @@ class TaskVoter extends Voter
             return false;
         }
 
+        // @codeCoverageIgnoreStart
         // only vote on Task objects inside this voter
         if (!$subject instanceof Task) {
             return false;
         }
+        // @codeCoverageIgnoreEnd
 
         return true;
     }
@@ -58,9 +60,13 @@ class TaskVoter extends Voter
 
         switch ($attribute) {
             case self::VIEW:
+                // @codeCoverageIgnoreStart
                 return $this->canView($task, $user);
+                // @codeCoverageIgnoreEnd
             case self::CREATE:
+                // @codeCoverageIgnoreStart
                 return $this->canCreate($task, $user);
+                // @codeCoverageIgnoreEnd
             case self::EDIT:
                 return $this->canEdit($task, $user);
             case self::TOGGLE:
@@ -69,9 +75,14 @@ class TaskVoter extends Voter
                 return $this->canDelete($task, $user);
         }
 
+        // @codeCoverageIgnoreStart
         throw new \LogicException('This code should not be reached!');
+        // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function canView()
     {
         // if they can edit, they can view
@@ -84,6 +95,9 @@ class TaskVoter extends Voter
         return true;
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function canCreate()
     {
         // If the user is logged in (which was already ckecked previously in voteOnAttribute(...))

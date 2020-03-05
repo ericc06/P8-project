@@ -6,9 +6,7 @@ namespace App\Tests\Controller;
 
 use App\Entity\Task;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TaskControllerTest extends WebTestCase
@@ -44,8 +42,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testListUndoneTasksAsAdmin()
     {
-        $this->logInAsAdmin();
-        $this->client->request('GET', '/tasks');
+        $this->requestAsAdmin('/tasks');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -66,8 +63,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testListUndoneTasksAsUser()
     {
-        $this->logInAsUser();
-        $this->client->request('GET', '/tasks');
+        $this->requestAsUser('/tasks');
 
         $this->assertResponseIsSuccessful();
         $this->assertContains(
@@ -101,8 +97,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testListDoneTasksAsAdmin()
     {
-        $this->logInAsAdmin();
-        $this->client->request('GET', '/tasks/done');
+        $this->requestAsAdmin('/tasks/done');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -123,8 +118,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testListDoneTasksAsUser()
     {
-        $this->logInAsUser();
-        $this->client->request('GET', '/tasks/done');
+        $this->requestAsUser('/tasks/done');
 
         $this->assertResponseIsSuccessful();
         $this->assertContains(
@@ -158,8 +152,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateTaskAccessAsAdmin()
     {
-        $this->logInAsAdmin();
-        $this->client->request('GET', '/tasks/create');
+        $this->requestAsAdmin('/tasks/create');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -168,8 +161,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateTaskAccessAsUser()
     {
-        $this->logInAsUser();
-        $this->client->request('GET', '/tasks/create');
+        $this->requestAsUser('/tasks/create');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -178,12 +170,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateTaskSubmitAsAdmin()
     {
-        //$this->logInAsAdmin();
-        //$crawler = $this->client->request('GET', '/tasks/create');
-        $this->client->request('GET', '/tasks/create', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks/create');
 
         $this->client->submitForm('Ajouter', [
             'task[title]' => 'My admin task',
@@ -220,10 +207,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateTaskSubmitAsUser()
     {
-        $this->client->request('GET', '/tasks/create', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $this->requestAsUser('/tasks/create');
 
         $this->client->submitForm('Ajouter', [
             'task[title]' => 'My user task',
@@ -241,6 +225,17 @@ class TaskControllerTest extends WebTestCase
             '/<a href="\/tasks\/[0-9]+\/edit">My user task<\/a>/',
             $this->client->getResponse()->getContent()
         );
+
+        // The task is created. But is it linked with the user?
+        // If the "delete" form is displayed for the user, it's the case.
+        $task_id = self::getTaskIdByTitle('My user task');
+
+        $count = preg_match_all(
+            '/action="\/tasks\/'.$task_id.'\/delete"/',
+            $this->client->getResponse()->getContent()
+        );
+
+        $this->assertEquals(1, $count);
     }
 
     public function testEditTaskAccessNotLoggedIn()
@@ -263,10 +258,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks/'.$task_id.'/edit');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -282,10 +274,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $this->requestAsUser('/tasks/'.$task_id.'/edit');
 
         //$this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertResponseIsSuccessful();
@@ -300,10 +289,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks/'.$task_id.'/edit');
 
         $this->client->submitForm('Modifier', [
             'task[title]' => 'Tâche anonyme n°1 modif',
@@ -320,10 +306,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/edit', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $this->requestAsUser('/tasks/'.$task_id.'/edit');
 
         $this->client->submitForm('Modifier', [
             'task[title]' => 'Tâche anonyme n°1 modif',
@@ -360,10 +343,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $crawler = $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $crawler = $this->requestAsAdmin('/tasks');
 
         // We first check that the task to be toggled "done" exists in the undone tasks list page
         $this->assertSelectorTextContains('h4 > a', 'Tâche anonyme n°1');
@@ -389,10 +369,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
 
-        $crawler = $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $crawler = $this->requestAsUser('/tasks');
 
         // We first check that the task to be toggled "done" exists in the undone tasks list page
 
@@ -443,10 +420,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°2');
 
-        $crawler = $this->client->request('GET', '/tasks/done', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $crawler = $this->requestAsAdmin('/tasks/done');
 
         // We first check that the task to be toggled "undone" exists in the done tasks list page
         $this->assertSelectorTextContains('h4 > a', 'Tâche anonyme n°2');
@@ -472,10 +446,7 @@ class TaskControllerTest extends WebTestCase
     {
         $task_id = self::getTaskIdByTitle('Tâche Eric n°5');
 
-        $crawler = $this->client->request('GET', '/tasks/done', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $crawler = $this->requestAsUser('/tasks/done');
 
         // We first check that the task to be toggled "undone" exists in the done tasks list page
 
@@ -504,10 +475,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testAllDeleteTaskButtonsArePresentForAdmin()
     {
-        $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks');
 
         // Counting the number of forms having action like /tasks/143/delete
         $count = preg_match_all(
@@ -520,10 +488,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testOnlyOwnersDeleteTaskButtonsArePresentForUser()
     {
-        $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $this->requestAsUser('/tasks');
 
         // Counting the number of forms having action like /tasks/143/delete
         $count = preg_match_all(
@@ -536,7 +501,7 @@ class TaskControllerTest extends WebTestCase
 
     // Because clicking a "Delete" task button opens a modal popup PNPUnit can't
     // interact with, we only test the delete task method by directly calling its route.
-    public function testDeleteTaskSubmitNotLoggedIn()
+    public function testDeleteAnomymousTaskSubmitNotLoggedIn()
     {
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
@@ -552,23 +517,33 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextContains('.navbar-brand', 'To Do List app');
     }
 
-    public function testDeleteTaskSubmitAsAdmin()
+    public function testDeleteUserTaskSubmitNotLoggedIn()
+    {
+        $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
+
+        $this->client->request('GET', '/tasks/'.$task_id.'/delete');
+
+        // When requesting this URL not being logged in,
+        // we should be redirected (with status code 302) to the login form page.
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertRegExp('/login$/', $this->client->getResponse()->headers->get('Location'));
+
+        $this->client->followRedirect();
+
+        $this->assertSelectorTextContains('.navbar-brand', 'To Do List app');
+    }
+
+    public function testDeleteAnonymousTaskSubmitAsAdmin()
     {
         // We first check that the task to be deleted exists in the task list page
-        $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks');
 
         $this->assertSelectorTextContains('h4 > a', 'Tâche anonyme n°1');
 
         // Then we delete it
         $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
-            'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
-        ]);
+        $this->requestAsAdmin('/tasks/'.$task_id.'/delete');
 
         $crawler = $this->client->followRedirect();
 
@@ -580,27 +555,21 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextNotContains('h4 > a', 'Tâche anonyme n°1');
     }
 
-    public function testDeleteTaskSubmitAsUser()
+    public function testDeleteUserTaskSubmitAsAdmin()
     {
         // We first check that the task to be deleted exists in the task list page
-        $crawler = $this->client->request('GET', '/tasks', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $crawler = $this->requestAsAdmin('/tasks');
 
         // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
         // and the task we are looking for is not the first one in the displayed list of tasks.
         // See: https://github.com/symfony/symfony-docs/issues/13036
         //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
-        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
+        $this->assertEquals(1, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
 
         // Then we delete it
         $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
 
-        $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
-            'PHP_AUTH_USER' => 'eric',
-            'PHP_AUTH_PW' => 'eric',
-        ]);
+        $this->requestAsAdmin('/tasks/'.$task_id.'/delete');
 
         $crawler = $this->client->followRedirect();
 
@@ -612,44 +581,103 @@ class TaskControllerTest extends WebTestCase
         $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°1');
     }
 
-    // Currently not used
-    private function logInAsAdmin()
+    public function testDeleteAnonymousTaskSubmitAsUser()
     {
-        $session = self::$container->get('session');
+        // We first check that the task to be deleted exists in the task list page
+        $crawler = $this->requestAsUser('/tasks');
 
-        $firewallName = 'main';
-        // if you don't define multiple connected firewalls, the context defaults to the firewall name
-        // See https://symfony.com/doc/current/reference/configuration/security.html#firewall-context
-        $firewallContext = 'main';
+        // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
+        // and the task we are looking for is not the first one in the displayed list of tasks.
+        // See: https://github.com/symfony/symfony-docs/issues/13036
+        //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
+        $this->assertEquals(1, $crawler->filter('h4 > a:contains("Tâche anonyme n°1")')->count());
 
-        // you may need to use a different token class depending on your application.
-        // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
-        $token = new UsernamePasswordToken('admin', 'admin', $firewallName, ['ROLE_ADMIN']);
-        $session->set('_security_'.$firewallContext, serialize($token));
-        $session->save();
+        // Then we try to delete it
+        $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $this->requestAsUser('/tasks/'.$task_id.'/delete');
+
+        // When requesting this URL while being connected as user, we should be
+        // redirected to the "access denied" page with the 403 status code.
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
+        $this->assertSelectorTextContains('h1', 'Accès non autorisé.');
     }
 
-    // Currently not used
-    private function logInAsUser()
+    public function testDeleteOtherUserTaskSubmitAsUser()
     {
-        $session = self::$container->get('session');
+        // We first check that the task to be deleted exists in the task list page
+        $crawler = $this->requestAsUser('/tasks');
 
-        $firewallName = 'main';
-        // if you don't define multiple connected firewalls, the context defaults to the firewall name
-        // See https://symfony.com/doc/current/reference/configuration/security.html#firewall-context
-        $firewallContext = 'main';
+        // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
+        // and the task we are looking for is not the first one in the displayed list of tasks.
+        // See: https://github.com/symfony/symfony-docs/issues/13036
+        //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
+        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
 
-        // you may need to use a different token class depending on your application.
-        // for example, when using Guard authentication you must instantiate PostAuthenticationGuardToken
-        $token = new UsernamePasswordToken('eric', 'eric', $firewallName, ['ROLE_USER']);
-        $session->set('_security_'.$firewallContext, serialize($token));
-        $session->save();
+        // Then we try to delete it
+        $task_id = self::getTaskIdByTitle('Tâche anonyme n°1');
 
-        $cookie = new Cookie($session->getName(), $session->getId());
-        $this->client->getCookieJar()->set($cookie);
+        $this->client->request('GET', '/tasks/'.$task_id.'/delete', [], [], [
+            'PHP_AUTH_USER' => 'eric',
+            'PHP_AUTH_PW' => 'eric',
+        ]);
+
+        // When requesting this URL while being connected as user, we should be
+        // redirected to the "access denied" page with the 403 status code.
+        $this->assertEquals(403, $this->client->getResponse()->getStatusCode());
+        $this->assertSelectorTextContains('h1', 'Accès non autorisé.');
+    }
+
+    public function testDeleteSelfUserTaskSubmitAsUser()
+    {
+        // We first check that the task to be deleted exists in the task list page
+        $crawler = $this->requestAsUser('/tasks');
+
+        // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
+        // and the task we are looking for is not the first one in the displayed list of tasks.
+        // See: https://github.com/symfony/symfony-docs/issues/13036
+        //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
+        $this->assertGreaterThan(0, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
+
+        // Then we delete it
+        $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
+
+        $this->requestAsUser('/tasks/'.$task_id.'/delete');
+
+        $crawler = $this->client->followRedirect();
+
+        $this->assertRegExp('/tasks$/', $crawler->getUri());
+        $this->assertContains(
+            'La tâche a bien été supprimée.',
+            $this->client->getResponse()->getContent()
+        );
+        $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°1');
+    }
+
+    public function testDeleteWrongObjectTypeSubmitAsAdmin()
+    {
+        // We first check that the task to be deleted exists in the task list page
+        $crawler = $this->requestAsAdmin('/tasks');
+
+        // Can't use assertSelectorTextContains() because it only checks the first selector occurrence
+        // and the task we are looking for is not the first one in the displayed list of tasks.
+        // See: https://github.com/symfony/symfony-docs/issues/13036
+        //$this->assertSelectorTextContains('h4 > a', 'Tâche Eric n°1');
+        $this->assertEquals(1, $crawler->filter('h4 > a:contains("Tâche Eric n°1")')->count());
+
+        // Then we delete it
+        $task_id = self::getTaskIdByTitle('Tâche Eric n°1');
+
+        $this->requestAsAdmin('/tasks/'.$task_id.'/delete');
+
+        $crawler = $this->client->followRedirect();
+
+        $this->assertRegExp('/tasks$/', $crawler->getUri());
+        $this->assertContains(
+            'La tâche a bien été supprimée.',
+            $this->client->getResponse()->getContent()
+        );
+        $this->assertSelectorTextNotContains('h4 > a', 'Tâche Eric n°1');
     }
 
     private function getTaskIdByTitle(string $title)
@@ -658,6 +686,22 @@ class TaskControllerTest extends WebTestCase
             ->getRepository(Task::class)
             ->findBy(['title' => $title])[0]
             ->getId();
+    }
+
+    private function requestAsAdmin(string $url)
+    {
+        return $this->client->request('GET', $url, [], [], [
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW' => 'admin',
+        ]);
+    }
+
+    private function requestAsUser(string $url)
+    {
+        return $this->client->request('GET', $url, [], [], [
+            'PHP_AUTH_USER' => 'eric',
+            'PHP_AUTH_PW' => 'eric',
+        ]);
     }
 
     protected function tearDown()
