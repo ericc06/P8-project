@@ -1,0 +1,91 @@
+/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.top-buttons-bar {
+    margin: 0 0 20px;
+}
+
+.username {
+    margin-top: 15px;
+}
+
+.thumbnail {
+    padding: 0;
+    margin-top: 20px;
+}
+
+.thumbnail .caption {
+    padding: 0 9px;
+    color: #333;
+}
+
+.thumbnail-header {
+    padding: 5px 10px;
+}
+
+.caption {
+    height: 130px;
+    overflow: auto;
+    margin-bottom: 25px;
+    border-bottom: 1px dotted lightgrey;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail-buttons button {
+    margin-top: 10px;
+}
+
+.thumbnail-buttons button:last-child {
+    margin-left: 5px;
+}
+
+.task-buttons-bar {
+    margin-left: 0px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.pull-bottom {
+    position: absolute;
+    bottom: 33px;
+    left: 25px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .navbar-header {
+        float: left;
+    }
+    .thumbnail {
+        margin-bottom: 60px;
+    }
+    .pull-bottom {
+        bottom: -5px;
+    }
+}
+
+@media (max-width: 992px) {
+    .btn-group-sm>.btn, .btn-sm {
+        padding: 5px;
+    }
+}

@@ -1,0 +1,10 @@
+framework:
+    test: true
+    csrf_protection: false
+    session:
+        storage_id: session.storage.mock_file
+    default_locale: fr
+    translator:
+        default_path: '%kernel.project_dir%/translations'
+        fallbacks:
+            - fr_FR

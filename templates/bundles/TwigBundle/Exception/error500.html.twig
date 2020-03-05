@@ -1,0 +1,23 @@
+{# templates/bundles/TwigBundle/Exception/error500.html.twig #}
+
+{% trans_default_domain 'messages' %}
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>{{ 'an_error_occurred'|trans }}</h1>
+
+    <p>
+        {{ 'the_server_encoutered_an_error'|trans }}
+    </p>
+    <p>
+        {{ 'return_to_homepage'
+            |trans({
+                '%link_start%': '<a href="' ~ path('homepage') ~ '">',
+                '%link_end%': '</a>'
+            })
+            |raw
+        }}
+    </p>
+{% endblock %}

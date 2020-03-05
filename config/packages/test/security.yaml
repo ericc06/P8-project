@@ -1,0 +1,5 @@
+# config/packages/test/security.yaml
+security:
+    firewalls:
+        main:
+            http_basic: ~

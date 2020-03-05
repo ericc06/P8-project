@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block header_img %}{% endblock %}
+
+{% block header_title %}<h1>{{ 'users_list'|trans }}</h1>{% endblock %}
+
+{% block body %}
+    {% if users|length == 0 %}
+        <div class="alert alert-warning" role="alert">
+            {{ 'no_registered_user'|trans }} <a href="{{ path('user_create') }}" class="btn btn-warning pull-right">{{ 'create_a_user'|trans }}</a>
+        </div>
+    {% else %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>{{ 'user_name'|trans }}</th>
+                <th>{{ 'user_email_address'|trans }}</th>
+                <th>{{ 'role'|trans }}</th>
+                <th>{{ 'actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                {% if user.username != "anonymous@system.user" %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                        <td>{{ 'administrator'|trans }}</td>
+                        {% else %}
+                        <td>{{ 'user'|trans }}</td>
+                        {% endif %}
+                        <td>
+                            <a href="{{ path('user_edit', {'id' : user.id}) }}" class="btn btn-success btn-sm">{{ 'edit'|trans }}</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

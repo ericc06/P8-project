@@ -1,0 +1,5 @@
+exclude_patterns:
+- "public/js/bootstrap.js"
+- "src/DataFixtures/"
+- "tests/"
+- "vendor/"

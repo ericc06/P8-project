@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="create_a_user">
+                <source>create_a_user</source>
+                <target>Créer un utilisateur</target>
+            </trans-unit>
+            <trans-unit id="list_users">
+                <source>list_users</source>
+                <target>Lister les utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="log_in">
+                <source>log_in</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <trans-unit id="log_out">
+                <source>log_out</source>
+                <target>Se déconnecter</target>
+            </trans-unit>
+            <trans-unit id="great">
+                <source>great</source>
+                <target>Superbe !</target>
+            </trans-unit>
+            <trans-unit id="oops">
+                <source>oops</source>
+                <target>Oops !</target>
+            </trans-unit>
+            <trans-unit id="welcome_message">
+                <source>welcome_message</source>
+                <target>Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !</target>
+            </trans-unit>
+            <trans-unit id="create_a_new_task">
+                <source>create_a_new_task</source>
+                <target>Créer une nouvelle tâche</target>
+            </trans-unit>
+            <trans-unit id="view_tasks_to_be_done">
+                <source>view_tasks_to_be_done</source>
+                <target>Consulter la liste des tâches à faire</target>
+            </trans-unit>
+            <trans-unit id="view_completed_tasks">
+                <source>view_completed_tasks</source>
+                <target>Consulter la liste des tâches terminées</target>
+            </trans-unit>
+            <trans-unit id="login_username">
+                <source>login_username</source>
+                <target>Nom d'utilisateur </target>
+            </trans-unit>
+            <trans-unit id="login_password">
+                <source>login_password</source>
+                <target>Mot de passe </target>
+            </trans-unit>
+            <trans-unit id="back_to_tasks_list">
+                <source>back_to_tasks_list</source>
+                <target>Retour à la liste des tâches</target>
+            </trans-unit>
+            <trans-unit id="create_a_task">
+                <source>create_a_task</source>
+                <target>Créer une tâche</target>
+            </trans-unit>
+            <trans-unit id="mark_as_completed">
+                <source>mark_as_completed</source>
+                <target>Marquer comme faite</target>
+            </trans-unit>
+            <trans-unit id="mark_as_not_completed">
+                <source>mark_as_not_completed</source>
+                <target>Marquer non terminée</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Supprimer</target>
+            </trans-unit>
+            <trans-unit id="no_registered_task">
+                <source>no_registered_task</source>
+                <target>Il n'y a pas encore de tâche enregistrée.</target>
+            </trans-unit>
+            <trans-unit id="users_list">
+                <source>users_list</source>
+                <target>Liste des utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="no_registered_user">
+                <source>no_registered_user</source>
+                <target>Il n'y a pas encore d'utilisateur enregistré.</target>
+            </trans-unit>
+            <trans-unit id="user_name">
+                <source>user_name</source>
+                <target>Nom d'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="user_email_address">
+                <source>user_email_address</source>
+                <target>Adresse d'utilisateur</target>
+            </trans-unit>
+            <trans-unit id="role">
+                <source>role</source>
+                <target>Rôle</target>
+            </trans-unit>
+            <trans-unit id="actions">
+                <source>actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="administrator">
+                <source>administrator</source>
+                <target>Administrateur</target>
+            </trans-unit>
+            <trans-unit id="user">
+                <source>user</source>
+                <target>Utilisateur</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Editer</target>
+            </trans-unit>
+            <trans-unit id="add">
+                <source>add</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="modify">
+                <source>modify</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="content">
+                <source>content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="choose_a_role">
+                <source>choose_a_role</source>
+                <target>Choisissez un rôle</target>
+            </trans-unit>
+            <trans-unit id="both_passwords_must_match">
+                <source>both_passwords_must_match</source>
+                <target>Les deux mots de passe doivent correspondre.</target>
+            </trans-unit>
+            <trans-unit id="type_password_again">
+                <source>type_password_again</source>
+                <target>Tapez le mot de passe à nouveau</target>
+            </trans-unit>
+            <trans-unit id="email_address">
+                <source>email_address</source>
+                <target>Adresse email</target>
+            </trans-unit>
+            <trans-unit id="task_added">
+                <source>task_added</source>
+                <target>La tâche a été bien été ajoutée.</target>
+            </trans-unit>
+            <trans-unit id="task_modified">
+                <source>task_modified</source>
+                <target>La tâche a bien été modifiée.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_completed">
+                <source>task_marked_as_completed</source>
+                <target>La tâche "%task_name%" a bien été marquée comme faite.</target>
+            </trans-unit>
+            <trans-unit id="task_marked_as_uncompleted">
+                <source>task_marked_as_uncompleted</source>
+                <target>La tâche "%task_name%" a bien été marquée comme non faite.</target>
+            </trans-unit>
+            <trans-unit id="confirm_delete_task">
+                <source>confirm_delete_task</source>
+                <target>Etes-vous sûr(e) de vouloir supprimer cette tâche ?</target>
+            </trans-unit>
+            <trans-unit id="task_deleted">
+                <source>task_deleted</source>
+                <target>La tâche a bien été supprimée.</target>
+            </trans-unit>
+            <trans-unit id="no_completed_task">
+                <source>no_completed_task</source>
+                <target>Il n'y a pas de tâche terminée.</target>
+            </trans-unit>
+            <trans-unit id="user_added">
+                <source>user_added</source>
+                <target>L'utilisateur a bien été ajouté.</target>
+            </trans-unit>
+            <trans-unit id="user_modified">
+                <source>user_modified</source>
+                <target>L'utilisateur a bien été modifié.</target>
+            </trans-unit>
+            <trans-unit id="authorized_access">
+                <source>authorized_access</source>
+                <target>Accès non autorisé.</target>
+            </trans-unit>
+            <trans-unit id="not_authorized">
+                <source>not_authorized</source>
+                <target>Vous n'êtes pas autorisé(e) à accéder à ce contenu.</target>
+            </trans-unit>
+            <trans-unit id="please_logout">
+                <source>please_logout</source>
+                <target>
+                    Merci de vous %link_start%déconnecter%link_end% puis d'essayer de vous reconnecter 
+                    avec un compte autorisé
+                </target>
+            </trans-unit>
+            <trans-unit id="or_return_to_homepage">
+                <source>or_return_to_homepage</source>
+                <target>ou retournez sur la %link_start%page d'accueil%link_end%.</target>
+            </trans-unit>
+            <trans-unit id="page_not_found">
+                <source>page_not_found</source>
+                <target>Page non trouvée.</target>
+            </trans-unit>
+            <trans-unit id="requested_page_not_found">
+                <source>requested_page_not_found</source>
+                <target>La page demandée n'a pas été trouvée sur ce serveur.</target>
+            </trans-unit>
+            <trans-unit id="return_to_homepage">
+                <source>return_to_homepage</source>
+                <target>Retourner sur la %link_start%page d'accueil%link_end%.</target>
+            </trans-unit>
+            <trans-unit id="an_error_occurred">
+                <source>an_error_occurred</source>
+                <target>Une erreur est survenue.</target>
+            </trans-unit>
+            <trans-unit id="the_server_encoutered_an_error">
+                <source>the_server_encoutered_an_error</source>
+                <target>Le serveur a rencontré une erreur.</target>
+            </trans-unit>
+            <trans-unit id="owner">
+                <source>owner</source>
+                <target>Propriétaire:</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

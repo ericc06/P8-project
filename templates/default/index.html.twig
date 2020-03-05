@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block header_title %}
+    <h1>{{ 'welcome_message'|trans }}</h1>
+{% endblock %}
+
+{% block body %}
+
+    {% include 'default/task_buttons.html.twig' with {'current_page': 'index'} %}
+{% endblock %}
