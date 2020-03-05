@@ -51,10 +51,6 @@
                 {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="pull-right btn btn-danger">{{ 'log_out'|trans }}</a>
                 {% endif %}
-
-                {% if not app.user and 'login' != app.request.attributes.get('_route') %}
-                <a href="{{ path('app_login') }}" class="btn btn-success">{{ 'log_in'|trans }}</a>
-                {% endif %}
             </div>
 
             <div class="row">
