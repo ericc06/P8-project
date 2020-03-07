@@ -2,6 +2,7 @@
 
 // namespace is arbitrary but should be different from App\Migrations
 // as migrations classes should NOT be autoloaded
+
 namespace DoctrineMigrations;
 
 use App\Entity\User;
@@ -37,7 +38,7 @@ class Version20190626044052 extends AbstractMigration implements ContainerAwareI
         // Creating the "admin" user with "ROLE_ADMIN" role.
         $admin = new User();
         $passwordEncoder = $this->container->get('security.password_encoder');
-        $password = $passwordEncoder->encodePassword($admin, "admin");
+        $password = $passwordEncoder->encodePassword($admin, 'admin');
         //$password = Tools::encryptPwd('admin');
         $query = 'INSERT INTO user (username, password, email, roles) ';
         $query .= 'VALUES ("admin", "'.$password.'", "admin@system.user", \'';
