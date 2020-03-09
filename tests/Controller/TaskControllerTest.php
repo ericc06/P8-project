@@ -692,7 +692,7 @@ class TaskControllerTest extends WebTestCase
     {
         return $this->client->request('GET', $url, [], [], [
             'PHP_AUTH_USER' => 'admin',
-            'PHP_AUTH_PW' => 'admin',
+            'PHP_AUTH_PW' => '@D31n7wd',
         ]);
     }
 

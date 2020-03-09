@@ -38,7 +38,7 @@ class SecurityControllerTest extends WebTestCase
 
         $this->client->submitForm('Se connecter', [
             '_username' => 'admin',
-            '_password' => 'admin',
+            '_password' => '@D31n7wd',
         ]);
 
         $crawler = $this->client->followRedirect();
@@ -79,7 +79,7 @@ class SecurityControllerTest extends WebTestCase
 
         $this->client->submitForm('Se connecter', [
             '_username' => 'admin',
-            '_password' => 'admin',
+            '_password' => '@D31n7wd',
         ]);
 
         $crawler = $this->client->followRedirect();

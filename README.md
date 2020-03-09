@@ -4,13 +4,13 @@
 Demo application base URL: https://rivierarts.fr  
 Administrator access:  
 - Login: admin  
-- Password: admin  
+- Password: @D31n7wd  
 
 Codacy and Codeclimate code quality analysis are accessible here:  
 - https://app.codacy.com/manual/ericc06/P8-project/dashboard  
 - https://codeclimate.com/github/ericc06/P8-project  
 
-# To migrate an existing application for a contributing developer:
+## To migrate an existing application for a contributing developer:
 
 The general process will consist in:
 - Keeping all data stored in the database.  
@@ -87,7 +87,7 @@ The .htaccess will be located in the "test-coverage" folder, and its content wil
         Require valid-user
 
 
-# How to contribute to the project respecting a high level of quality and performance:
+## How to contribute to the project respecting a high level of quality and performance:
 
 1. It should have already be done by the projet repository administrator, but first check that a Codacy account is configured to check the code quality of the "dev" branch of the project.
 
