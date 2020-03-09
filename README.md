@@ -6,6 +6,11 @@ Administrator access:
 - Login: admin  
 - Password: @D31n7wd  
 
+Test report: http://test-coverage.rivierarts.fr/  
+Access:  
+- Login: admin  
+- Password: 7E5t@dW1n  
+
 Codacy and Codeclimate code quality analysis are accessible here:  
 - https://app.codacy.com/manual/ericc06/P8-project/dashboard  
 - https://codeclimate.com/github/ericc06/P8-project  
@@ -55,6 +60,8 @@ The general process will consist in:
         RewriteCond %{HTTP_HOST} ^www\.domaine\.tld [NC]
         RewriteRule ^(.*)$ https://domaine.tld/$1 [R=301,L]
 
+You can also configure a real SSL certificate on your domain to avoid browser security warnings.
+
 6. For unit and functional tests, a dedicated database must be created. The ".env.test" file must be modified to connect this test database:
 
         DATABASE_URL=mysql://username:pwd@127.0.0.1:3306/test_db_name?serverVersion=5.7
@@ -75,7 +82,7 @@ The general process will consist in:
 Note : If the "Error: No code coverage driver is available" message appears, it means that Xdebug needs to be activated in the "php.ini" file.
 
 10. Test report files are created in a "test-coverage" folder which is not included in the "public" folder on purpose. This way the report can't be accessed from the application web site as it contains sensible information.  
-To make it accessible, create a subdomain such as "test-coverage.domain.tld" and make it point to the "test-coverage" folder.  
+To make it accessible, for example, create a subdomain such as "test-coverage.domain.tld" and make it point to the "test-coverage" folder.  
 Finally, secure this access with a password thanks to .htpasswd and .htaccess files:  
 The .htpasswd will be located in the root directory of the Symfony application (i.e. at the same level than the "test-coverage" folder) and its content can be generated with this tool: https://hostingcanada.org/htpasswd-generator/  
 The .htaccess will be located in the "test-coverage" folder, and its content will look like this:
@@ -85,7 +92,6 @@ The .htaccess will be located in the "test-coverage" folder, and its content wil
         AuthType Basic
         AuthUserFile <system_path_of_the_root_folder_of_the_Symfony_app>/.htpasswd
         Require valid-user
-
 
 ## How to contribute to the project respecting a high level of quality and performance:
 
